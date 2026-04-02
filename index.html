@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cultivate CPG — CPG Brokerage</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0d3a5c; --teal: #3ecfb2; --teal-dark: #2aaa90;
+  --teal-pale: #e0f7f3; --cream: #f8f6f2; --warm-white: #fafaf8;
+  --text-dark: #111; --text-mid: #4a4a4a;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--warm-white); color: var(--text-dark); }
+
+/* NAV */
+nav { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: white; border-bottom: 1px solid #e8e8e8; position: sticky; top: 0; z-index: 100; }
+.nav-logo img { height: 36px; }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { color: var(--text-mid); font-size: 0.85rem; text-decoration: none; }
+.nav-cta { background: var(--teal); color: white; padding: 0.55rem 1.4rem; font-size: 0.82rem; font-weight: 500; border-radius: 4px; text-decoration: none; }
+
+/* HERO */
+.hero { background: var(--navy); display: grid; grid-template-columns: 1.1fr 0.9fr; min-height: 86vh; }
+.hero-left { padding: 5rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+.hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--teal); }
+h1 { font-family: 'Fraunces', serif; font-size: clamp(2.6rem, 4.5vw, 3.8rem); font-weight: 900; line-height: 1.05; color: white; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+h1 em { font-style: italic; color: var(--teal); }
+.hero-sub { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.65); max-width: 430px; margin-bottom: 1.25rem; font-weight: 300; }
+.hero-aside { font-size: 0.82rem; color: rgba(255,255,255,0.32); font-style: italic; max-width: 400px; margin-bottom: 2rem; line-height: 1.6; }
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.btn-primary { background: var(--teal); color: white; padding: 0.85rem 2rem; font-size: 0.85rem; font-weight: 500; border-radius: 4px; text-decoration: none; }
+.btn-ghost { color: rgba(255,255,255,0.75); font-size: 0.85rem; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; }
+.hero-right { position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; background: var(--navy); overflow: hidden; }
+.sticker-display { display: flex; flex-direction: column; gap: 1.5rem; align-items: flex-start; padding-top: 4rem; }
+.sticker-card { background: #5ddbb5; border-radius: 8px; padding: 1.5rem 2rem; max-width: 380px; transform: rotate(-2deg); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+.sticker-card p { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 900; line-height: 1.15; color: var(--navy); }
+.sticker-url { font-size: 0.78rem; font-family: 'DM Sans', sans-serif; font-weight: 500; color: var(--navy); opacity: 0.7; margin-top: 0.5rem; }
+
+/* MARQUEE */
+.marquee-section { background: var(--cream); padding: 1.8rem 0; overflow: hidden; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
+.marquee-track { display: flex; gap: 0; white-space: nowrap; animation: marquee 28s linear infinite; }
+.marquee-item { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 300; color: var(--navy); padding: 0 1.75rem; }
+.marquee-dot { color: var(--teal); padding: 0 0.25rem; font-size: 1.2rem; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* GRIND */
+.grind { background: #0a0a0a; padding: 0; overflow: hidden; }
+.grind-label { padding: 3rem 3.5rem 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.grind-label span { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); font-weight: 500; }
+.grind-label::before { content: ''; display: block; width: 20px; height: 1.5px; background: var(--teal); }
+.grind-statement { padding: 0 3.5rem 3rem; }
+.grind-statement h2 { font-family: 'Fraunces', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.0; color: white; letter-spacing: -0.03em; }
+.grind-statement h2 em { font-style: italic; color: var(--teal); }
+.grind-statement p { font-size: 0.95rem; color: rgba(255,255,255,0.45); font-weight: 300; margin-top: 1rem; max-width: 480px; line-height: 1.7; }
+.bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-template-rows: 260px 200px; gap: 3px; padding: 0 3.5rem 3rem; }
+.bento-cell { border-radius: 4px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.25rem 1.5rem; }
+.span-2 { grid-column: span 2; }
+.row-2 { grid-row: span 2; }
+.cell-coffee { background: #1a1008; border: 1px solid rgba(201,168,76,0.15); }
+.cell-early { background: #06151f; border: 1px solid rgba(62,207,178,0.12); }
+.cell-wins { background: #0d1f10; border: 1px solid rgba(62,207,178,0.2); }
+.cell-calls { background: #0f0f18; border: 1px solid rgba(255,255,255,0.06); }
+.cell-store { background: #111; border: 1px solid rgba(255,255,255,0.05); }
+.cell-timer { background: #06151f; border: 1px solid rgba(62,207,178,0.15); justify-content: center; align-items: center; }
+.cell-data { background: #0a0a0a; border: 1px solid rgba(255,255,255,0.07); }
+.cell-zyn { background: #111; border: 1px solid rgba(255,255,255,0.06); }
+.cell-mantra { background: var(--navy); border: 1px solid rgba(62,207,178,0.2); grid-column: span 2; justify-content: center; align-items: flex-start; padding: 2rem 2.5rem; }
+.cell-tag { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.4rem; }
+.cell-headline { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; color: white; line-height: 1.2; }
+.cell-sub { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.3rem; font-weight: 300; line-height: 1.5; }
+.cell-big-num { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 900; color: var(--teal); line-height: 1; letter-spacing: -0.04em; }
+.cell-big-unit { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(62,207,178,0.6); margin-top: 0.25rem; }
+.coffee-svg { position: absolute; top: 1.5rem; right: 1.5rem; opacity: 0.4; }
+.pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--teal); position: absolute; top: 1.25rem; right: 1.25rem; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+.clock-face { width: 80px; height: 80px; border-radius: 50%; border: 2px solid rgba(62,207,178,0.4); position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.clock-hand-h { position: absolute; bottom: 50%; left: 50%; width: 2px; height: 22px; background: var(--teal); transform-origin: bottom center; transform: translateX(-50%) rotate(150deg); border-radius: 2px; }
+.clock-hand-m { position: absolute; bottom: 50%; left: 50%; width: 1.5px; height: 28px; background: rgba(255,255,255,0.6); transform-origin: bottom center; transform: translateX(-50%) rotate(320deg); border-radius: 2px; }
+.clock-center { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); position: absolute; }
+.bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 80px; margin-bottom: 0.75rem; }
+.bar { flex: 1; border-radius: 2px 2px 0 0; background: rgba(62,207,178,0.2); min-width: 8px; }
+.bar.lit { background: var(--teal); }
+.bar.mid { background: rgba(62,207,178,0.5); }
+.store-icons { display: flex; gap: 0.6rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+.store-icon { width: 32px; height: 32px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.win-ticker { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.75rem; }
+.win-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+.win-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+.win-item.fresh { color: rgba(255,255,255,0.85); }
+.win-item.fresh .win-dot { background: #4aff8c; animation: pulse 1.5s infinite; }
+.call-stack { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.75rem; }
+.call-bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.08); }
+.call-bar.active { background: var(--teal); width: 100%; }
+.call-bar.done { background: rgba(62,207,178,0.3); }
+.call-count { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 900; color: white; line-height: 1; letter-spacing: -0.03em; }
+.call-count span { color: var(--teal); }
+.mantra-text { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 900; font-style: italic; color: white; line-height: 1.2; max-width: 360px; }
+.mantra-text em { color: var(--teal); font-style: normal; }
+.zyn-cans { display: flex; gap: 6px; margin-bottom: 0.75rem; }
+.zyn-can { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); }
+.zyn-can.open { border-color: var(--teal); background: rgba(62,207,178,0.1); }
+
+/* WHERE WE PLAY */
+.section { padding: 5rem 3.5rem; }
+.section-tag { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-dark); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.section-tag::before { content: ''; display: block; width: 20px; height: 1.5px; background: var(--teal); }
+h2 { font-family: 'Fraunces', serif; font-size: clamp(1.9rem, 3vw, 2.8rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; color: var(--navy); margin-bottom: 1rem; }
+.spec-section { background: white; padding: 4rem 3.5rem; }
+.spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.spec-card { border: 1.5px solid; padding: 2rem 1.75rem; border-radius: 6px; }
+.spec-card.natural { border-color: var(--teal); }
+.spec-card.conv { border-color: var(--navy); }
+.spec-card.beyond { border-color: #c9a84c; }
+.spec-badge { display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.75rem; border-radius: 2px; margin-bottom: 1rem; }
+.natural .spec-badge { background: var(--teal-pale); color: var(--teal-dark); }
+.conv .spec-badge { background: #e8eef4; color: var(--navy); }
+.beyond .spec-badge { background: #faf3e0; color: #a07c20; }
+.spec-card h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 0.6rem; }
+.spec-card p { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+.retailer-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.chip { font-size: 0.7rem; padding: 0.25rem 0.65rem; border-radius: 20px; font-weight: 500; }
+.chip.teal { background: var(--teal-pale); color: var(--teal-dark); }
+.chip.navy { background: #e8eef4; color: var(--navy); }
+.chip.more { background: transparent; border: 1px dashed #ccc; color: #aaa; font-style: italic; }
+.beyond-hint { font-size: 0.78rem; font-style: italic; color: #bbb; margin-top: 1rem; line-height: 1.5; }
+
+/* WHY */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 2.5rem; }
+.why-card { background: var(--cream); padding: 1.75rem 2rem; border-radius: 6px; border-left: 3px solid var(--teal); }
+.why-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+.why-card p { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+
+/* TEAM */
+.team-section { background: var(--navy); padding: 5rem 3.5rem; }
+.team-section h2 { color: white; }
+.team-section .section-tag { color: var(--teal); }
+.team-section .section-tag::before { background: var(--teal); }
+.team-sub { color: rgba(255,255,255,0.6); font-size: 0.95rem; font-weight: 300; line-height: 1.7; max-width: 580px; margin-bottom: 3rem; }
+.leadership-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.team-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; border-radius: 6px; display: block; }
+.team-info { padding: 0.85rem 0.25rem 0; }
+.team-name { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: white; }
+.team-title { font-size: 0.72rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.2rem; line-height: 1.4; }
+.team-focus { font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; font-weight: 300; }
+.leader-badge { display: inline-block; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(62,207,178,0.15); color: var(--teal); padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.5rem; }
+.team-divider { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin: 2rem 0 1.5rem; padding-bottom: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+
+/* TESTIMONIALS */
+.testi-section { background: var(--cream); padding: 5rem 3.5rem; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.testi-card { background: white; border: 0.5px solid #e0e0e0; padding: 2rem 1.75rem; border-radius: 6px; }
+.testi-q { font-size: 2rem; color: var(--teal); line-height: 1; margin-bottom: 0.75rem; font-family: 'Fraunces', serif; }
+.testi-quote { font-size: 0.9rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; margin-bottom: 1.25rem; font-style: italic; }
+.testi-author { font-size: 0.78rem; color: var(--navy); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+.testi-brand { font-size: 0.75rem; color: #999; margin-top: 0.15rem; }
+
+/* CTA */
+.cta-section { background: var(--navy); padding: 5rem 3.5rem; display: flex; justify-content: space-between; align-items: center; gap: 3rem; flex-wrap: wrap; }
+.cta-left { max-width: 560px; }
+.cta-left p { font-size: 0.95rem; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.75; margin-top: 0.75rem; }
+.cta-right { display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; }
+.cta-btn { background: var(--teal); color: white; padding: 1rem 2.25rem; font-size: 0.85rem; font-weight: 500; border-radius: 4px; text-decoration: none; text-align: center; }
+.cta-contact-info { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-align: center; line-height: 1.9; }
+.cta-contact-info a { color: var(--teal); text-decoration: none; }
+
+/* FOOTER */
+footer { background: #07253d; padding: 1.75rem 3.5rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); }
+footer img { height: 28px; opacity: 0.85; filter: brightness(10); }
+.footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.35); font-style: italic; }
+.footer-right { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-align: right; line-height: 1.9; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><img src="https://images.squarespace-cdn.com/content/v1/6408f7a1ee901320a701fc29/7f7da9ac-1efc-4bbc-ae06-6d1f5d9c32f8/Cultivate_NoTag_RGB.png?format=1500w" alt="Cultivate CPG" /></div>
+  <div class="nav-links">
+    <a href="#">Why Cultivate</a>
+    <a href="#team">Our Team</a>
+    <a href="#">Where We Play</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="mailto:Aaron@cultivatecpg.com" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">CPG Brokerage</div>
+    <h1>We genuinely<br><em>love</em> selling<br>groceries to<br>grocery stores.</h1>
+    <p class="hero-sub">Yeah, we said it. While everyone else is chasing the next big thing, we're deep in distributor portals, buyer meetings, and promo calendars — and honestly? We wouldn't have it any other way.</p>
+    <p class="hero-aside">(Our therapists find this fascinating.)</p>
+    <div class="hero-actions">
+      <a href="mailto:Aaron@cultivatecpg.com" class="btn-primary">Work with us</a>
+      <a href="#team" class="btn-ghost">Meet the team →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="sticker-display">
+      <div class="sticker-card">
+        <p>I love selling groceries to grocery stores.</p>
+        <div class="sticker-url">cultivatecpg.com</div>
+      </div>
+      <div style="padding-left:1rem;">
+        <p style="font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:1rem;color:rgba(255,255,255,0.45);max-width:280px;line-height:1.6;">Yes, this is a real bumper sticker.<br>Yes, people put it on their cars.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Retailer Sales</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Account Management</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Distributor Relations</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Promotional Planning</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Pricing Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Category Reviews</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Forecast Building</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Development</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Retailer Sales</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Account Management</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Distributor Relations</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Promotional Planning</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Pricing Strategy</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Category Reviews</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Forecast Building</span><span class="marquee-dot">✦</span>
+    <span class="marquee-item">Brand Development</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- GRIND SECTION -->
+<div class="grind">
+  <div class="grind-label"><span>The Cultivate Standard</span></div>
+  <div class="grind-statement">
+    <h2>If you're not first,<br>you're <em>last.</em></h2>
+    <p>Early mornings. Back-to-back calls. Store checks between flights. Every hour is a chance to move the needle for your brand — and we don't waste them.</p>
+  </div>
+  <div class="bento">
+    <div class="bento-cell cell-timer row-2">
+      <div class="clock-face">
+        <div class="clock-hand-h"></div>
+        <div class="clock-hand-m"></div>
+        <div class="clock-center"></div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Fraunces',serif;font-size:2.8rem;font-weight:900;color:white;line-height:1;">5:47</div>
+        <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(62,207,178,0.7);margin-top:0.3rem;">AM</div>
+        <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:0.75rem;font-weight:300;line-height:1.5;">First call<br>already booked.</div>
+      </div>
+    </div>
+    <div class="bento-cell cell-calls span-2">
+      <div class="pulse-dot"></div>
+      <div class="call-stack">
+        <div class="call-bar done" style="width:100%"></div>
+        <div class="call-bar done" style="width:100%"></div>
+        <div class="call-bar done" style="width:100%"></div>
+        <div class="call-bar active"></div>
+        <div class="call-bar" style="width:60%"></div>
+        <div class="call-bar" style="width:40%"></div>
+      </div>
+      <div class="cell-tag">Buyer calls — today</div>
+      <div class="call-count">14<span>+</span></div>
+      <div class="cell-sub">Still going.</div>
+    </div>
+    <div class="bento-cell cell-coffee">
+      <svg class="coffee-svg" width="48" height="60" viewBox="0 0 48 60" fill="none">
+        <rect x="8" y="20" width="28" height="32" rx="4" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.3)" stroke-width="1.5"/>
+        <path d="M36 28h4a4 4 0 0 1 0 8h-4" stroke="rgba(201,168,76,0.3)" stroke-width="1.5" fill="none"/>
+        <path d="M16 10 Q18 4 20 10 Q22 16 24 10" stroke="rgba(201,168,76,0.25)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="cell-tag">Fuel</div>
+      <div class="cell-headline" style="color:rgba(201,168,76,0.9);">Cup #3</div>
+      <div class="cell-sub">It's 9am.</div>
+    </div>
+    <div class="bento-cell cell-wins span-2">
+      <div class="win-ticker">
+        <div class="win-item"><div class="win-dot" style="background:rgba(62,207,178,0.3)"></div>Sprouts — reset confirmed ✓</div>
+        <div class="win-item"><div class="win-dot" style="background:rgba(62,207,178,0.3)"></div>Kroger buyer — meeting locked ✓</div>
+        <div class="win-item fresh"><div class="win-dot"></div>H-E-B — PO just dropped 🔥</div>
+      </div>
+      <div class="cell-tag">Today's wins</div>
+      <div class="cell-headline">Deals don't close<br>themselves.</div>
+    </div>
+    <div class="bento-cell cell-store">
+      <div class="store-icons">
+        <div class="store-icon">🏪</div>
+        <div class="store-icon">🏪</div>
+        <div class="store-icon">🏪</div>
+        <div class="store-icon" style="border-color:rgba(62,207,178,0.4);background:rgba(62,207,178,0.08);">✓</div>
+      </div>
+      <div class="cell-tag">Store checks</div>
+      <div class="cell-headline">4 stops.<br>Before noon.</div>
+    </div>
+    <div class="bento-cell cell-zyn">
+      <div class="zyn-cans">
+        <div class="zyn-can open"></div>
+        <div class="zyn-can open"></div>
+        <div class="zyn-can open"></div>
+        <div class="zyn-can"></div>
+        <div class="zyn-can"></div>
+      </div>
+      <div class="cell-tag">Situational awareness</div>
+      <div class="cell-headline" style="font-size:1.1rem;">Locked in.</div>
+    </div>
+    <div class="bento-cell cell-mantra">
+      <div class="mantra-text">Outwork everyone.<br><em>Every single day.</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.3);margin-top:1rem;font-weight:300;line-height:1.6;">Your brand's success is the only<br>metric that matters to us.</div>
+    </div>
+    <div class="bento-cell cell-data">
+      <div class="bar-chart">
+        <div class="bar" style="height:30%"></div>
+        <div class="bar" style="height:45%"></div>
+        <div class="bar mid" style="height:55%"></div>
+        <div class="bar mid" style="height:65%"></div>
+        <div class="bar lit" style="height:80%"></div>
+        <div class="bar lit" style="height:100%"></div>
+      </div>
+      <div class="cell-tag">Velocity</div>
+      <div class="cell-headline" style="font-size:1.1rem;">Up and<br>to the right.</div>
+    </div>
+    <div class="bento-cell cell-early">
+      <div class="cell-big-num">6AM</div>
+      <div class="cell-big-unit">First store check</div>
+      <div class="cell-sub" style="margin-top:0.5rem;">Before your competition<br>finishes their coffee.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHERE WE PLAY -->
+<div class="spec-section">
+  <div class="section-tag">Where we play</div>
+  <h2>Natural. Conventional. <em style="font-family:'Fraunces',serif;font-style:italic;color:var(--teal);">Beyond.</em></h2>
+  <p style="max-width:520px;font-size:0.95rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-top:0.5rem;">We're active across dozens of accounts in every channel — the names below are just the ones you already know. The full list is a lot longer, and every account on it gets the same level of attention.</p>
+  <div class="spec-grid">
+    <div class="spec-card natural">
+      <div class="spec-badge">Natural</div>
+      <h3>Natural &amp; Premium</h3>
+      <p>The natural channel is where challenger brands find their footing — and where we've spent years building the relationships that open the right doors. We know the buyers, understand what moves the needle, and know how to earn placement at the retailers that actually shape culture.</p>
+      <div class="retailer-chips">
+        <span class="chip teal">Whole Foods</span>
+        <span class="chip teal">Sprouts</span>
+        <span class="chip teal">Natural Grocers</span>
+        <span class="chip teal">Fresh Thyme</span>
+        <span class="chip more">+ many more</span>
+      </div>
+    </div>
+    <div class="spec-card conv">
+      <div class="spec-badge">Conventional</div>
+      <h3>Conventional Done Right</h3>
+      <p>Anyone can pitch a big box. Being sharp in conventional — really sharp — means knowing which regional operators move your category and earning the trust to get behind them. That's where the real velocity lives, and there are a lot more doors worth knocking on than most people realize.</p>
+      <div class="retailer-chips">
+        <span class="chip navy">H-E-B</span>
+        <span class="chip navy">Wegmans</span>
+        <span class="chip navy">Publix</span>
+        <span class="chip navy">Raley's</span>
+        <span class="chip navy">Harris Teeter</span>
+        <span class="chip navy">Meijer</span>
+        <span class="chip navy">Kroger</span>
+        <span class="chip navy">Albertsons</span>
+        <span class="chip navy">Ahold</span>
+        <span class="chip more">+ dozens more</span>
+      </div>
+    </div>
+    <div class="spec-card beyond">
+      <div class="spec-badge">Beyond</div>
+      <h3>And then some.</h3>
+      <p>There are channels beyond the grocery aisle where the right brand — at the right moment — can do serious volume. We know how to find those moments, and we know how to execute when they arrive.</p>
+      <p class="beyond-hint">We'll tell you more when we talk.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WHY CULTIVATE -->
+<section class="section" style="background:var(--warm-white);">
+  <div class="section-tag">Why Cultivate</div>
+  <h2>We've been on every side<br>of the table.</h2>
+  <p style="max-width:520px;font-size:0.95rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-top:0.5rem;">Brand founders. Distributor executives. Retailer category managers. We know the life-or-death realities of building a brand because we've lived them — the sleepless launches, the make-or-break resets, the moments where everything hinges on one buyer's yes. That's exactly why we show up for our clients the way we do.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>We actually pick up the phone</h3>
+      <p>Wild concept, we know. When you call, a human answers — because your launch window doesn't care that it's 4pm on a Friday, and neither do we.</p>
+    </div>
+    <div class="why-card">
+      <h3>We win when you win</h3>
+      <p>Our success is tied directly to yours. That's not a tagline — it's the entire business model. When your velocity goes up, so does everything for us.</p>
+    </div>
+    <div class="why-card">
+      <h3>The right door at the right time</h3>
+      <p>A big opening order at the wrong account doesn't build a brand — it burns one. The right placement at the right moment builds a data story, creates momentum, and gives you the proof points to go national with confidence.</p>
+    </div>
+    <div class="why-card">
+      <h3>Growth without the crash</h3>
+      <p>We've seen brands explode onto shelves and implode six months later. Our playbook is built to prevent exactly that — sustainable velocity, healthy margins, real infrastructure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="section-tag">The crew</div>
+  <h2>Work hard. Play hard.<br>Talk about groceries constantly.</h2>
+  <p class="team-sub">We hire people who've actually done it — founded and scaled brands from scratch, survived the thankless grind of the distributor exec and category manager trenches, and sat on the buying side deciding what makes it onto the shelf. We didn't come here to learn the business. We came here to win in it.</p>
+
+  <div class="team-divider">Leadership</div>
+  <div class="leadership-grid">
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Tom_Williams" alt="Tom Williams" />
+      <div class="team-info"><div class="leader-badge">Co-Founder</div><div class="team-name">Tom Williams</div><div class="team-focus">Sales Team Support &amp; Costco Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Aaron_Barnholt" alt="Aaron Barnholt" />
+      <div class="team-info"><div class="leader-badge">Co-Founder</div><div class="team-name">Aaron Barnholt</div><div class="team-focus">Sales/Ops Support &amp; Thrive Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Josh_Cannon" alt="Josh Cannon" />
+      <div class="team-info"><div class="team-name">Josh Cannon</div><div class="team-title">VP of Sales &amp; Operations</div><div class="team-focus">Sales Ops Support &amp; NE Sales</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Erin_Birge" alt="Erin Birge" />
+      <div class="team-info"><div class="team-name">Erin Birge</div><div class="team-title">Director of Sales Operations</div><div class="team-focus">Sales Ops &amp; Distributor Relations</div></div>
+    </div>
+  </div>
+
+  <div class="team-divider">The Full Roster</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_George_Daines" alt="George Daines" />
+      <div class="team-info"><div class="team-name">George Daines</div><div class="team-title">Director of Sales</div><div class="team-focus">Whole Foods Account Lead</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Jamel_Cannon" alt="Jamel Cannon" />
+      <div class="team-info"><div class="team-name">Jamel Cannon</div><div class="team-title">Director of Sales</div><div class="team-focus">Southeast Sales Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Keenan_Smith" alt="Keenan Smith" />
+      <div class="team-info"><div class="team-name">Keenan Smith</div><div class="team-title">Director of Sales</div><div class="team-focus">PNW Sales Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Alana_Pedraza" alt="Alana Pedraza" />
+      <div class="team-info"><div class="team-name">Alana Pedraza</div><div class="team-title">Director of Key Accounts</div><div class="team-focus">Sprouts Account Lead</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Kaylee_Hamilton" alt="Kaylee Hamilton" />
+      <div class="team-info"><div class="team-name">Kaylee Hamilton</div><div class="team-title">Director of Sales</div><div class="team-focus">Kroger Account Lead</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Tom_Hardy" alt="Tom Hardy" />
+      <div class="team-info"><div class="team-name">Tom Hardy</div><div class="team-title">Director of Sales</div><div class="team-focus">Midwest Account Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Jen_Woodward" alt="Jen Woodward" />
+      <div class="team-info"><div class="team-name">Jen Woodward</div><div class="team-title">Director of Sales</div><div class="team-focus">H-E-B, Central Market &amp; United</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Matt_Beck" alt="Matt Beck" />
+      <div class="team-info"><div class="team-name">Matt Beck</div><div class="team-title">Area Sales Manager</div><div class="team-focus">NorCal + Rocky Mtn Accounts</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Torrey_Schaefer" alt="Torrey Schaefer" />
+      <div class="team-info"><div class="team-name">Torrey Schaefer</div><div class="team-title">Area Sales Manager</div><div class="team-focus">SoCal Account Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_JJ_Needham" alt="JJ Needham" />
+      <div class="team-info"><div class="team-name">JJ Needham</div><div class="team-title">Area Sales Manager</div><div class="team-focus">PNW Sales Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Russell_Samuel" alt="Russell Samuel" />
+      <div class="team-info"><div class="team-name">Russell Samuel</div><div class="team-title">Director of Sales</div><div class="team-focus">NE Sales Coverage</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Siobhan_Boothe" alt="Siobhan Boothe" />
+      <div class="team-info"><div class="team-name">Siobhan Boothe</div><div class="team-title">Sales Operations Specialist</div></div>
+    </div>
+    <div class="team-card">
+      <img class="team-photo" src="REPLACE_Teresa_Misch" alt="Teresa Misch" />
+      <div class="team-info"><div class="team-name">Teresa Misch</div><div class="team-title">Sales Operations Specialist</div><div class="team-focus">Retailer Promotion Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="section-tag">From our partners</div>
+  <h2>Brands that grew with us</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-q">"</div>
+      <p class="testi-quote">Cultivate was instrumental in getting our brand off the ground and laying the foundation for true, explosive growth. A top pick for pioneering young brands in the grocery space.</p>
+      <div class="testi-author">Paul Voge</div>
+      <div class="testi-brand">Co-founder &amp; CEO, Aura Bora</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-q">"</div>
+      <p class="testi-quote">In just under 8 months the Cultivate team knocked down 3,000 national retail doors that are the backbone of our business.</p>
+      <div class="testi-author">Troy Bonde</div>
+      <div class="testi-brand">Co-Founder &amp; CEO, Sauz</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-q">"</div>
+      <p class="testi-quote">Sound guidance and a hunger to grow our brand the right way. Accessible at all times, with established relationships across categories and a sharp understanding of what levers to pull.</p>
+      <div class="testi-author">Andrew Baldwin</div>
+      <div class="testi-brand">VP of Sales, Veyl Ventures</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-left">
+    <div class="section-tag" style="color:var(--teal);">Ready to grow?</div>
+    <h2 style="color:white;">Let's put your brand<br>on the shelf.</h2>
+    <p>If you're building something worth growing, we want to talk. No intake forms. No 6-week discovery process. Just a real conversation about where your brand is and where it's going.</p>
+  </div>
+  <div class="cta-right">
+    <a href="mailto:Aaron@cultivatecpg.com" class="cta-btn">Get in touch</a>
+    <div class="cta-contact-info"><a href="mailto:Aaron@cultivatecpg.com">Aaron@cultivatecpg.com</a><br>(847) 722-8215</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="https://images.squarespace-cdn.com/content/v1/6408f7a1ee901320a701fc29/7f7da9ac-1efc-4bbc-ae06-6d1f5d9c32f8/Cultivate_NoTag_RGB.png?format=1500w" alt="Cultivate CPG" />
+  <div class="footer-tagline">We genuinely love selling groceries to grocery stores.</div>
+  <div class="footer-right">Aaron@cultivatecpg.com<br>(847) 722-8215</div>
+</footer>
+
+</body>
+</html>
